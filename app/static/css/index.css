@@ -144,6 +144,9 @@ section.download-resume > a > button.btn-resume:hover {
   float: inline-start;
   width: 450px;
   margin: 10px;
+  padding-left: 10px;
+  padding-right: 10px;
+  background-color: #ddd;
   border: 2px solid hsla(0, 0%, 0%, 0.5);
   background: #ddd;
   filter: brightness(0.97);

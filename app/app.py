@@ -49,7 +49,6 @@ def get_projects():
 @app.route("/api/project/<int:project_id>", methods=["GET"])
 def get_project(project_id):
     content = flask.request.get_json(silent=True, force=True)
-    print(content)
 
     project = get_db().projects.find_one(
         {"id": project_id},
@@ -62,8 +61,6 @@ def get_project(project_id):
     project["description"] = markdown.markdown(
         project["description"], extensions=["fenced_code"]
     )
-
-    print(project)
 
     return flask.jsonify(project)
 
