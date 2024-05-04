@@ -1,0 +1,8 @@
+version: '3'
+
+services:
+  web:
+    container_name: www-dennylungu-com
+    build: './app'
+    ports:
+      - '80:5000'

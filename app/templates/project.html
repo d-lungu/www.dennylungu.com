@@ -1,0 +1,22 @@
+{% extends "base.html" %} {% block title %}Projects{% endblock %} {% block head
+%}
+<script>
+  const projectId = {{PROJECT_ID}};
+</script>
+{% endblock %} {% block content %}
+<div id="placeholder" class="lds-ellipsis">
+  <div></div>
+  <div></div>
+  <div></div>
+  <div></div>
+</div>
+<div id="project-container" style="display: none">
+  <h2 id="project-title">Title</h2>
+  <p id="project-description">Description</p>
+</div>
+<script
+  async
+  defer
+  src="{{ url_for('static',filename='js/project.js') }}"
+></script>
+{% endblock %}

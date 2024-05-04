@@ -1,0 +1,250 @@
+@import url("https://fonts.googleapis.com/css?family=Heebo:900|Roboto|Satisfy&display=swap");
+
+* {
+  font-family: "Roboto", sans-serif;
+}
+
+body {
+  background: #ddd;
+  background-image: radial-gradient(black 1px, transparent 0);
+  background-size: 50px 50px;
+  background-position: -19px -19px;
+
+  padding: 0;
+  margin: 0;
+}
+
+nav {
+  box-sizing: border-box;
+
+  position: sticky;
+  top: 0;
+  left: 0;
+
+  height: 5em;
+  width: 100%;
+
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 5rem;
+  padding-right: 5rem;
+
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+nav > menu {
+  margin-left: auto;
+  display: flex;
+  flex-direction: row;
+  text-transform: uppercase;
+  font-size: 0.8em;
+}
+
+nav > menu > li {
+  list-style-type: none;
+  margin: auto 1em;
+}
+
+nav > menu > li > a {
+  text-decoration: underline;
+  color: inherit;
+}
+
+nav > menu > li > a:hover {
+  text-decoration: none;
+}
+
+footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+
+  width: 100%;
+
+  text-align: center;
+  text-transform: uppercase;
+  font-size: 0.8em;
+}
+
+footer > p {
+  margin: auto 1em;
+}
+
+.content {
+  width: 75%;
+  margin: 0 auto;
+}
+
+/* index.html start */
+
+section.hero > div.hero-content {
+  background: #ddd;
+}
+
+section.hero > div.hero-content > h2.hero-title {
+  font-size: 3em;
+  margin: 0;
+}
+
+section.hero > div.hero-content > p.hero-subtitle {
+  font-size: 1em;
+  line-height: 1.5em;
+  margin: 0;
+}
+
+section.download-resume {
+  display: flex;
+  flex-direction: column;
+  row-gap: 10px;
+  padding-top: 10px;
+}
+
+section.download-resume > a > button.btn-resume {
+  border: none;
+  background-color: #ddd;
+  color: black;
+  border: 2px solid hsla(0, 0%, 0%, 0.5);
+  font-size: 1em;
+
+  cursor: pointer;
+
+  padding: 12px 30px;
+  width: 20em;
+
+  filter: brightness(0.97);
+  transition: 0.1s ease-in-out;
+
+  > img {
+    width: 2em;
+    vertical-align: middle;
+  }
+}
+
+section.download-resume > a > button.btn-resume:hover {
+  filter: brightness(1.03);
+}
+
+/* index.html end */
+
+/* projects.html start */
+
+.projects-title {
+  font-size: 3em;
+}
+
+#projects-container {
+  width: 100%;
+  margin: 0;
+}
+
+#projects-container > div.project-card {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  float: inline-start;
+  width: 450px;
+  margin: 10px;
+  border: 2px solid hsla(0, 0%, 0%, 0.5);
+  background: #ddd;
+  filter: brightness(0.97);
+
+  transition: 0.1s ease-in-out;
+}
+
+#projects-container > div.project-card:hover,
+#projects-container > div.project-card:active {
+  filter: brightness(1.03);
+  border-radius: 5px;
+}
+
+#projects-container > div.project-card > img.project-card-image {
+  width: 100%;
+}
+
+#projects-container > div.project-card > img.project-card-title {
+  font-size: 3em;
+}
+
+#projects-container > div.project-card > img.project-card-description {
+  font-size: 1em;
+}
+
+#projects-container > div.project-card > div.project-card-icons {
+  display: flex;
+  float: right;
+}
+
+#projects-container
+  > div.project-card
+  > div.project-card-icons
+  > a
+  > img.project-card-icon {
+  height: 3em;
+  cursor: pointer;
+  padding: 1px;
+}
+/* projects.html end */
+
+/* https://loading.io/css/ loader start */
+
+.lds-ellipsis,
+.lds-ellipsis div {
+  box-sizing: border-box;
+}
+.lds-ellipsis {
+  display: inline-block;
+  position: relative;
+  width: 80px;
+  height: 80px;
+}
+.lds-ellipsis div {
+  position: absolute;
+  top: 33.33333px;
+  width: 13.33333px;
+  height: 13.33333px;
+  border-radius: 50%;
+  background: currentColor;
+  animation-timing-function: cubic-bezier(0, 1, 1, 0);
+}
+.lds-ellipsis div:nth-child(1) {
+  left: 8px;
+  animation: lds-ellipsis1 0.6s infinite;
+}
+.lds-ellipsis div:nth-child(2) {
+  left: 8px;
+  animation: lds-ellipsis2 0.6s infinite;
+}
+.lds-ellipsis div:nth-child(3) {
+  left: 32px;
+  animation: lds-ellipsis2 0.6s infinite;
+}
+.lds-ellipsis div:nth-child(4) {
+  left: 56px;
+  animation: lds-ellipsis3 0.6s infinite;
+}
+@keyframes lds-ellipsis1 {
+  0% {
+    transform: scale(0);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+@keyframes lds-ellipsis3 {
+  0% {
+    transform: scale(1);
+  }
+  100% {
+    transform: scale(0);
+  }
+}
+@keyframes lds-ellipsis2 {
+  0% {
+    transform: translate(0, 0);
+  }
+  100% {
+    transform: translate(24px, 0);
+  }
+}
+
+/* https://loading.io/css/ loader end */
