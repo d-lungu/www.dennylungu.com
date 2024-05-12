@@ -1,253 +1,125 @@
-@import url("https://fonts.googleapis.com/css?family=Heebo:900|Roboto|Satisfy&display=swap");
-
-* {
-  font-family: "Roboto", sans-serif;
-}
-
-body {
-  background: #ddd;
-  background-image: radial-gradient(black 1px, transparent 0);
-  background-size: 50px 50px;
-  background-position: -19px -19px;
-
-  padding: 0;
-  margin: 0;
-}
-
-nav {
-  box-sizing: border-box;
-
-  position: sticky;
-  top: 0;
-  left: 0;
-
-  height: 5em;
-  width: 100%;
-
-  margin-left: auto;
-  margin-right: auto;
-  padding-left: 5rem;
-  padding-right: 5rem;
-
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-}
-
-nav > menu {
-  margin-left: auto;
-  display: flex;
-  flex-direction: row;
-  text-transform: uppercase;
-  font-size: 0.8em;
-}
-
-nav > menu > li {
-  list-style-type: none;
-  margin: auto 1em;
-}
-
-nav > menu > li > a {
-  text-decoration: underline;
-  color: inherit;
-}
-
-nav > menu > li > a:hover {
-  text-decoration: none;
-}
-
-footer {
-  position: fixed;
-  bottom: 0;
-  left: 0;
-
-  width: 100%;
-
-  text-align: center;
-  text-transform: uppercase;
-  font-size: 0.8em;
-}
-
-footer > p {
-  margin: auto 1em;
-}
-
-.content {
-  width: 75%;
-  margin: 0 auto;
-}
-
-/* index.html start */
-
-section.hero > div.hero-content {
-  background: #ddd;
-}
-
-section.hero > div.hero-content > h2.hero-title {
-  font-size: 3em;
-  margin: 0;
-}
-
-section.hero > div.hero-content > p.hero-subtitle {
-  font-size: 1em;
-  line-height: 1.5em;
-  margin: 0;
-}
-
-section.download-resume {
-  display: flex;
-  flex-direction: column;
-  row-gap: 10px;
-  padding-top: 10px;
-}
-
-section.download-resume > a > button.btn-resume {
-  border: none;
-  background-color: #ddd;
-  color: black;
-  border: 2px solid hsla(0, 0%, 0%, 0.5);
-  font-size: 1em;
-
-  cursor: pointer;
-
-  padding: 12px 30px;
-  width: 20em;
-
-  filter: brightness(0.97);
-  transition: 0.1s ease-in-out;
-
-  > img {
-    width: 2em;
-    vertical-align: middle;
+.svg-icon {
+  path {
+    fill: currentColor;
   }
 }
 
-section.download-resume > a > button.btn-resume:hover {
-  filter: brightness(1.03);
-}
-
-/* index.html end */
-
-/* projects.html start */
-
-.projects-title {
-  font-size: 3em;
-}
-
-#projects-container {
-  width: 100%;
-  margin: 0;
-}
-
-#projects-container > div.project-card {
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-  float: inline-start;
-  width: 450px;
-  margin: 10px;
-  padding-left: 10px;
-  padding-right: 10px;
-  background-color: #ddd;
-  border: 2px solid hsla(0, 0%, 0%, 0.5);
-  background: #ddd;
-  filter: brightness(0.97);
-
-  transition: 0.1s ease-in-out;
-}
-
-#projects-container > div.project-card:hover,
-#projects-container > div.project-card:active {
-  filter: brightness(1.03);
-  border-radius: 5px;
-}
-
-#projects-container > div.project-card > img.project-card-image {
-  width: 100%;
-}
-
-#projects-container > div.project-card > img.project-card-title {
-  font-size: 3em;
-}
-
-#projects-container > div.project-card > img.project-card-description {
-  font-size: 1em;
-}
-
-#projects-container > div.project-card > div.project-card-icons {
-  display: flex;
-  float: right;
-}
-
-#projects-container
-  > div.project-card
-  > div.project-card-icons
-  > a
-  > img.project-card-icon {
-  height: 3em;
+.card.cell {
   cursor: pointer;
-  padding: 1px;
+  user-select: none;
 }
-/* projects.html end */
 
-/* https://loading.io/css/ loader start */
+.card-title {
+  font-weight: bold;
+}
 
-.lds-ellipsis,
-.lds-ellipsis div {
-  box-sizing: border-box;
+.card-description {
+  max-height: 0px;
+  opacity: 0;
+  transition: all 0.2s ease-in-out;
 }
-.lds-ellipsis {
-  display: inline-block;
-  position: relative;
-  width: 80px;
-  height: 80px;
+
+.card-description.is-active {
+  opacity: 1;
+  max-height: 30px;
+  padding: 0.5rem 0px 0.75rem 0px;
 }
-.lds-ellipsis div {
+
+.card-footer {
+  max-height: 0px;
+  opacity: 0;
+  transition: all 0.2s ease-in-out;
+}
+
+.card-footer.is-active {
+  opacity: 1;
+  max-height: inherit;
+  padding: 0.5rem 0px 0.75rem 0px;
+}
+
+@media only screen and (max-width: 1000px) {
+  .navbar-menu {
+    display: block;
+    opacity: 0;
+    position: relative;
+    padding: 0;
+    left: 0;
+    right: 0;
+    max-height: 0px;
+    transition: all 0.2s ease-in-out;
+    pointer-events: none;
+    overflow: hidden;
+  }
+
+  .navbar-menu.is-active {
+    max-height: 200px;
+    padding: 0.25rem;
+    opacity: 1;
+    transform: none;
+    pointer-events: auto;
+  }
+}
+
+.spinner {
   position: absolute;
-  top: 33.33333px;
-  width: 13.33333px;
-  height: 13.33333px;
+  width: 88px;
+  height: 88px;
+  top: 50%;
+  left: 50%;
+  margin-left: -44px;
+  margin-top: -44px;
+
+  display: none;
+
   border-radius: 50%;
-  background: currentColor;
-  animation-timing-function: cubic-bezier(0, 1, 1, 0);
+  border: 14.1px solid currentColor;
+  animation: spinner-bulqg1 0.8s infinite linear alternate, spinner-oaa3wk 1.6s infinite linear;
 }
-.lds-ellipsis div:nth-child(1) {
-  left: 8px;
-  animation: lds-ellipsis1 0.6s infinite;
-}
-.lds-ellipsis div:nth-child(2) {
-  left: 8px;
-  animation: lds-ellipsis2 0.6s infinite;
-}
-.lds-ellipsis div:nth-child(3) {
-  left: 32px;
-  animation: lds-ellipsis2 0.6s infinite;
-}
-.lds-ellipsis div:nth-child(4) {
-  left: 56px;
-  animation: lds-ellipsis3 0.6s infinite;
-}
-@keyframes lds-ellipsis1 {
+
+@keyframes spinner-bulqg1 {
   0% {
-    transform: scale(0);
+    clip-path: polygon(50% 50%, 0 0, 50% 0%, 50% 0%, 50% 0%, 50% 0%, 50% 0%);
   }
+
+  12.5% {
+    clip-path: polygon(50% 50%, 0 0, 50% 0%, 100% 0%, 100% 0%, 100% 0%, 100% 0%);
+  }
+
+  25% {
+    clip-path: polygon(50% 50%, 0 0, 50% 0%, 100% 0%, 100% 100%, 100% 100%, 100% 100%);
+  }
+
+  50% {
+    clip-path: polygon(50% 50%, 0 0, 50% 0%, 100% 0%, 100% 100%, 50% 100%, 0% 100%);
+  }
+
+  62.5% {
+    clip-path: polygon(50% 50%, 100% 0, 100% 0%, 100% 0%, 100% 100%, 50% 100%, 0% 100%);
+  }
+
+  75% {
+    clip-path: polygon(50% 50%, 100% 100%, 100% 100%, 100% 100%, 100% 100%, 50% 100%, 0% 100%);
+  }
+
   100% {
-    transform: scale(1);
-  }
-}
-@keyframes lds-ellipsis3 {
-  0% {
-    transform: scale(1);
-  }
-  100% {
-    transform: scale(0);
-  }
-}
-@keyframes lds-ellipsis2 {
-  0% {
-    transform: translate(0, 0);
-  }
-  100% {
-    transform: translate(24px, 0);
+    clip-path: polygon(50% 50%, 50% 100%, 50% 100%, 50% 100%, 50% 100%, 50% 100%, 0% 100%);
   }
 }
 
-/* https://loading.io/css/ loader end */
+@keyframes spinner-oaa3wk {
+  0% {
+    transform: scaleY(1) rotate(0deg);
+  }
+
+  49.99% {
+    transform: scaleY(1) rotate(135deg);
+  }
+
+  50% {
+    transform: scaleY(-1) rotate(0deg);
+  }
+
+  100% {
+    transform: scaleY(-1) rotate(-135deg);
+  }
+}

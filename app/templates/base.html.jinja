@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0,
+    maximum-scale=1.0, user-scalable=no"
+    />
+    <title>{% block title %}{% endblock %} - Denny Lungu</title>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@1.0.0/css/bulma.min.css" />
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/index.css') }}" />
+    {% block head %} {% endblock %}
+  </head>
+  <body>
+    <div id="spinner" class="spinner"></div>
+
+    <nav class="navbar" role="navigation">
+      <div class="navbar-brand">
+        <a class="navbar-burger" role="button">
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+        </a>
+      </div>
+
+      <div class="navbar-menu">
+        <div class="navbar-end">
+          <a class="navbar-item" href="/"> About </a>
+          <a class="navbar-item" href="/projects"> Projects </a>
+        </div>
+      </div>
+    </nav>
+
+    <div class="container">
+      {% block content %}{% endblock %}
+    </div>
+
+    <footer style="position: absolute; bottom: 0; width: 100%; padding: 10px">
+      <div class="content has-text-centered">&copy; Denny Lungu 2024</div>
+    </footer>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        const $burger = document.querySelector(".navbar-burger");
+        const $menu = document.querySelector(".navbar-menu");
+
+        $burger.addEventListener("click", (e) => {
+          $burger.classList.toggle("is-active");
+          $menu.classList.toggle("is-active");
+        });
+      });
+    </script>
+    {% block scripts %}{% endblock %}
+  </body>
+</html>

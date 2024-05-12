@@ -1,67 +1,61 @@
+$spinner = document.getElementById("spinner");
+$spinner.style.display = "inherit";
+
 fetch("/api/projects")
   .then((data) => data.json())
   .then((data) => {
-    var msnry_elem = document.querySelector("#projects-container");
-    var msnry = new Masonry(msnry_elem, {
-      itemSelector: ".project-card",
-    });
+    $spinner.style.display = "none";
 
-    var projectContainer = document.getElementById("projects-container");
-    var placeholderContainer = document.getElementById("placeholder");
+    var $projectsGrid = document.getElementById("projects-grid");
+    $projectsGrid.innerHTML = "";
 
     data.forEach((project) => {
-      var project_card = document.createElement("div");
-      project_card.classList.add("project-card");
+      var $card = document.createElement("div");
+      $card.classList.add("card");
+      $card.classList.add("cell");
+      $card.style = "margin: 10px";
 
-      var card_image = document.createElement("img");
-      card_image.classList.add("project-card-image");
-      card_image.src = project.img;
-      project_card.appendChild(card_image);
+      var $cardContent = document.createElement("div");
+      $cardContent.classList.add("card-content");
+      $card.appendChild($cardContent);
 
-      var card_title = document.createElement("h2");
-      card_title.classList.add("project-card-title");
-      card_title.innerText = project.name;
-      project_card.appendChild(card_title);
+      var $cardTitle = document.createElement("span");
+      $cardTitle.classList.add("card-title");
+      $cardTitle.innerText = project.name;
 
-      var card_description = document.createElement("p");
-      card_description.classList.add("project-card-description");
-      card_description.innerHTML = project.short_description;
-      project_card.appendChild(card_description);
+      $cardContent.appendChild($cardTitle);
 
-      var card_icons = document.createElement("div");
-      card_icons.classList.add("project-card-icons");
+      var $cardDescription = document.createElement("div");
+      $cardDescription.classList.add("card-description");
+      $cardDescription.innerHTML = project.short_description;
+      $cardContent.appendChild($cardDescription);
 
-      var url_icon_a = document.createElement("a");
-      url_icon_a.href = `/project/${project.id}`;
+      var $cardFooter = document.createElement("footer");
+      $cardFooter.classList.add("card-footer");
+      $card.appendChild($cardFooter);
 
-      /*
-      if (project.url && project.url !== "#") {
-        var gh_icon_a = document.createElement("a");
-        gh_icon_a.href = project.url;
+      var $cardFooterLink = document.createElement("a");
+      $cardFooterLink.classList.add("card-footer-item");
+      $cardFooterLink.href = project.url;
+      $cardFooterLink.innerText = "Open";
+      $cardFooter.appendChild($cardFooterLink);
 
-        var gh_icon = document.createElement("img");
-        gh_icon.src = "/static/img/github-mark.svg";
-        gh_icon.classList.add("project-card-icon");
-        gh_icon_a.appendChild(gh_icon);
-        card_icons.appendChild(gh_icon_a);
-      }
-      */
+      $projectsGrid.appendChild($card);
 
-      var url_icon = document.createElement("img");
-      url_icon.src = "/static/img/open-in-new.svg";
-      url_icon.classList.add("project-card-icon");
-      url_icon_a.appendChild(url_icon);
+      $card.addEventListener("click", () => {
+        if ($cardDescription.classList.contains("is-active")) {
+          $cardDescription.classList.toggle("is-active");
+          $cardFooter.classList.toggle("is-active");
+        } else {
+          document.querySelectorAll(".card-description.is-active, .card-footer.is-active").forEach((e) => {
+            e.classList.toggle("is-active");
+          });
 
-      card_icons.appendChild(url_icon_a);
-      project_card.appendChild(card_icons);
-
-      projectContainer.appendChild(project_card);
+          $cardDescription.classList.toggle("is-active");
+          $cardFooter.classList.toggle("is-active");
+        }
+      });
     });
-
-    placeholderContainer.style.display = "none"; // hide placeholder
-    projectContainer.style.display = "block"; // show projects
-
-    msnry.layout();
   })
   .catch((error) => {
     console.log(error);
