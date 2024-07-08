@@ -5,4 +5,4 @@ services:
     container_name: www-dennylungu-com
     build: './app'
     ports:
-      - '80:5000'
+      - '5000:5000'
