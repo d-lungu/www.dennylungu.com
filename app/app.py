@@ -67,17 +67,17 @@ def get_project(project_id):
 
 @app.route("/")
 def index():
-    return flask.render_template("index.html.jinja")
+    return flask.render_template("index.html")
 
 
 @app.route("/projects")
 def projects():
-    return flask.render_template("projects.html.jinja")
+    return flask.render_template("projects.html")
 
 
 @app.route("/project/<int:project_id>")
 def project_page(project_id):
-    return flask.render_template("project.html.jinja", PROJECT_ID=project_id)
+    return flask.render_template("project.html", PROJECT_ID=project_id)
 
 
 
