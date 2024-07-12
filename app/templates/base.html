@@ -40,7 +40,7 @@
     </div>
 
     <footer style="position: absolute; bottom: 0; width: 100%; padding: 10px">
-      <div class="content has-text-centered">&copy; Denny Lungu 2024</div>
+        <div class="content has-text-centered" id="footer-content"></div>
     </footer>
 
     <script>
@@ -52,6 +52,10 @@
           $burger.classList.toggle("is-active");
           $menu.classList.toggle("is-active");
         });
+
+        // automatically update the copyright year
+        const footer_content = document.querySelector("#footer-content");
+        footer_content.textContent = "© Denny Lungu " + new Date().getFullYear();
       });
     </script>
     {% block scripts %}{% endblock %}
