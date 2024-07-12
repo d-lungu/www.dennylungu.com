@@ -1,10 +1,6 @@
-import os
-import datetime
 import flask
 import pymongo
 import markdown
-import bson
-import requests
 
 app = flask.Flask(__name__)
 
