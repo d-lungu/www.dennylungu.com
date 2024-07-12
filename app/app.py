@@ -6,11 +6,9 @@ app = flask.Flask(__name__)
 
 
 def get_db():
-
     db = getattr(flask.g, "_database", None)
 
     if db is None:
-
         db = flask.g._database = pymongo.MongoClient(
             get_config()["MONGO_URL"]
         ).dennylungu
@@ -19,7 +17,6 @@ def get_db():
 
 
 def get_config():
-
     config = getattr(flask.g, "_config", None)
 
     if config is None:
@@ -30,35 +27,15 @@ def get_config():
     return config
 
 
-# https://auth0.com/blog/best-practices-for-flask-api-development/
 @app.route("/api/projects", methods=["GET"])
 def get_projects():
-    projects = get_db().projects.find({}, {"_id": 0})
+    projects_query = get_db().projects.find({"hide": {"$ne": True}}, {"_id": 0})
 
-    if projects is None:
+    if projects_query is None:
         flask.abort(404)
 
-    projects = list(projects)
-    return flask.jsonify(projects)
-
-
-@app.route("/api/project/<int:project_id>", methods=["GET"])
-def get_project(project_id):
-    content = flask.request.get_json(silent=True, force=True)
-
-    project = get_db().projects.find_one(
-        {"id": project_id},
-        {"_id": 0},
-    )
-
-    if project is None:
-        flask.abort(404)
-
-    project["description"] = markdown.markdown(
-        project["description"], extensions=["fenced_code"]
-    )
-
-    return flask.jsonify(project)
+    projects_list = list(projects_query)
+    return flask.jsonify(projects_list)
 
 
 @app.route("/")
@@ -73,8 +50,23 @@ def projects():
 
 @app.route("/project/<int:project_id>")
 def project_page(project_id):
-    return flask.render_template("project.html", PROJECT_ID=project_id)
+    project = get_db().projects.find_one(
+        {"id": project_id},
+        {"_id": 0},
+    )
 
+    if project is None:
+        flask.abort(404)
+
+    project_name = project["name"]
+    project_md = markdown.markdown(
+        project["description"], extensions=["fenced_code"]
+    )
+    project_github = project["url"]
+    project_livedemo = project["demo"]
+
+    return flask.render_template("project.html", PROJECT_NAME=project_name, PROJECT_MD=project_md,
+                                 PROJECT_GITHUB_URL=project_github, PROJECT_LIVEDEMO=project_livedemo)
 
 
 if __name__ == "__main__":

@@ -41,7 +41,7 @@ fetch("/api/projects")
 
             const $cardFooterLink = document.createElement("a");
             $cardFooterLink.classList.add("card-footer-item");
-            $cardFooterLink.href = project.url;
+            $cardFooterLink.href = "/project/" + project.id;
             $cardFooterLink.innerText = "Open";
             $cardFooter.appendChild($cardFooterLink);
 
