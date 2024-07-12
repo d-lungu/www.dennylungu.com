@@ -63,10 +63,11 @@ def project_page(project_id):
         project["description"], extensions=["fenced_code"]
     )
     project_github = project["url"]
+    project_github2 = project["url2"]
     project_livedemo = project["demo"]
 
     return flask.render_template("project.html", PROJECT_NAME=project_name, PROJECT_MD=project_md,
-                                 PROJECT_GITHUB_URL=project_github, PROJECT_LIVEDEMO=project_livedemo)
+                                 PROJECT_GITHUB_URL=project_github, PROJECT_LIVEDEMO=project_livedemo, PROJECT_GITHUB_URL2=project_github2)
 
 
 if __name__ == "__main__":
