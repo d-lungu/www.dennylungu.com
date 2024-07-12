@@ -73,3 +73,10 @@ fetch("/api/projects")
     .catch((error) => {
         console.log(error);
     });
+
+
+$show_filters_button = document.getElementById("show-filters");
+$filters_content = document.getElementById("filters-content");
+$show_filters_button.addEventListener("click", (e) => {
+    $filters_content.classList.toggle("is-active");
+})

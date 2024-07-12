@@ -37,6 +37,14 @@
   padding: 0.5rem 0px 0.75rem 0px;
 }
 
+#filters-content {
+  display: none;
+}
+
+#filters-content.is-active {
+  display: block;
+}
+
 @media only screen and (max-width: 1000px) {
   .navbar-menu {
     display: block;
