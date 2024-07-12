@@ -6,6 +6,21 @@ document.addEventListener('mousemove', function (event) {
     hoveredElement = event.target;
 });
 
+function create_lang_tag(text) {
+    const tag = document.createElement("span");
+    tag.textContent = text;
+    tag.classList.add("tag");
+
+    return tag;
+}
+
+const techToColor = {
+    "BulmaCSS": "is-primary",
+    "Flask": "is-link",
+    "FastAPI": "is-info"
+}
+
+
 fetch("/api/projects")
     .then((data) => data.json())
     .then((data) => {
@@ -24,11 +39,26 @@ fetch("/api/projects")
             $cardContent.classList.add("card-content");
             $card.appendChild($cardContent);
 
-            const $cardTitle = document.createElement("span");
-            $cardTitle.classList.add("card-title");
-            $cardTitle.innerText = project.name;
+            const $cardTitle = document.createElement("div");
+            const $cardTitleContent = document.createElement("p");
+            $cardTitleContent.textContent = project.name;
 
             $cardContent.appendChild($cardTitle);
+            $cardContent.appendChild($cardTitleContent);
+
+            if (project.tags !== undefined) {
+                const $cardTitleTags = document.createElement("div");
+                $cardTitleTags.classList.add("tags");
+
+                for (let i = 0; i < project.tags.length; i++) {
+                    const $tagElement = create_lang_tag(project.tags[i]);
+                    $tagElement.classList.add(techToColor[project.tags[i]]);
+                    $cardTitleTags.appendChild($tagElement);
+                }
+
+
+                $cardTitle.appendChild($cardTitleTags);
+            }
 
             const $cardDescription = document.createElement("div");
             $cardDescription.classList.add("card-description");

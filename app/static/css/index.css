@@ -9,10 +9,6 @@
   user-select: none;
 }
 
-.card-title {
-  font-weight: bold;
-}
-
 .card-description {
   max-height: 0px;
   opacity: 0;
