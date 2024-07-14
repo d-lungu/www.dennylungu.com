@@ -30,18 +30,19 @@
 
     <div class="navbar-menu">
         <div class="navbar-start">
-            <nav class="navbar-item breadcrumb">
+            <nav class="navbar-item breadcrumb has-succeeds-separator">
                 <ul>
                     {% for href, title in BREADCRUMB[:-1] %}
-                    <li><a href="{{ href }}">{{ title }}</a></li>
+                        <li><a href="{{ href }}">{{ title }}</a></li>
                     {% endfor %}
-                    <li class="is-active"><a href="{{ BREADCRUMB[-1][0] }}" aria-current="page">{{ BREADCRUMB[-1][1] }}</a></li>
+                    <li class="is-active"><a href="{{ BREADCRUMB[-1][0] }}"
+                                             aria-current="page">{{ BREADCRUMB[-1][1] }}</a></li>
                 </ul>
             </nav>
         </div>
         <div class="navbar-end">
-            <a class="navbar-item" href="/"> About </a>
-            <a class="navbar-item" href="/projects"> Projects </a>
+            <a class="navbar-item" href="/"><p class="has-text-link">About</p></a>
+            <a class="navbar-item" href="/projects"><p class="has-text-link">Projects</p></a>
         </div>
     </div>
 </nav>
