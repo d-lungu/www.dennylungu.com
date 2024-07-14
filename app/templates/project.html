@@ -25,9 +25,9 @@
 
             {{ PROJECT_NAME }}
 
-                {% for tag in PROJECT_TAGS %}
-                    <span class="tag">{{ tag }}</span>
-                {% endfor %}
+            {% for tag in PROJECT_TAGS %}
+                <span class="tag">{{ tag }}</span>
+            {% endfor %}
         </h2>
         <div id="project-description" class="content">{{ PROJECT_MD|safe }}</div>
         <div id="project-links" class="columns">
