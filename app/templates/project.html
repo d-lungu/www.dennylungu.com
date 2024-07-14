@@ -1,27 +1,37 @@
 {% extends "base.html" %}
 
-{% block title %}{{PROJECT_NAME}}{% endblock %}
+{% block title %}{{ PROJECT_NAME }}{% endblock %}
 
 {% block content %}
-<div id="project-container">
-    <h2 id="project-title" class="title is-1">
-        {% if PROJECT_GITHUB_URL %}
-        <a href="{{PROJECT_GITHUB_URL}}"><box-icon name='github' type='logo' color='currentColor'></box-icon></a>
-        {% endif %}
+    <div id="project-container">
+        <h2 id="project-title" class="title is-1">
+            {% if PROJECT_GITHUB_URL %}
+                <a href="{{ PROJECT_GITHUB_URL }}">
+                    <box-icon name='github' type='logo' color='currentColor'></box-icon>
+                </a>
+            {% endif %}
 
-        {% if PROJECT_GITHUB_URL2 %}
-        <a href="{{PROJECT_GITHUB_URL2}}"><box-icon name='github' type='logo' color='currentColor'></box-icon></a>
-        {% endif %}
+            {% if PROJECT_GITHUB_URL2 %}
+                <a href="{{ PROJECT_GITHUB_URL2 }}">
+                    <box-icon name='github' type='logo' color='currentColor'></box-icon>
+                </a>
+            {% endif %}
 
-        {% if PROJECT_LIVEDEMO %}
-        <a href="{{PROJECT_LIVEDEMO}}"><box-icon name='link' color='currentColor'></box-icon></a>
-        {% endif %}
+            {% if PROJECT_LIVEDEMO %}
+                <a href="{{ PROJECT_LIVEDEMO }}">
+                    <box-icon name='link' color='currentColor'></box-icon>
+                </a>
+            {% endif %}
 
-        {{PROJECT_NAME}}
-    </h2>
-    <div id="project-description" class="content">{{PROJECT_MD|safe}}</div>
-    <div id="project-links" class="columns">
+            {{ PROJECT_NAME }}
 
+                {% for tag in PROJECT_TAGS %}
+                    <span class="tag">{{ tag }}</span>
+                {% endfor %}
+        </h2>
+        <div id="project-description" class="content">{{ PROJECT_MD|safe }}</div>
+        <div id="project-links" class="columns">
+
+        </div>
     </div>
-</div>
 {% endblock %}

@@ -80,6 +80,8 @@ def project_page(project_id):
     project_github2 = project["url2"]
     project_livedemo = project["demo"]
 
+    project_tags = project["tags"]
+
     breadcrumb = (
         ("/", "Home"),
         ("/projects", "Projects"),
@@ -89,7 +91,7 @@ def project_page(project_id):
     return flask.render_template("project.html", BREADCRUMB=breadcrumb, PROJECT_NAME=project_name,
                                  PROJECT_MD=project_md,
                                  PROJECT_GITHUB_URL=project_github, PROJECT_LIVEDEMO=project_livedemo,
-                                 PROJECT_GITHUB_URL2=project_github2)
+                                 PROJECT_GITHUB_URL2=project_github2, PROJECT_TAGS=project_tags,)
 
 
 if __name__ == "__main__":
