@@ -1,3 +1,4 @@
+import os
 import flask
 import pymongo
 import markdown
@@ -36,6 +37,12 @@ def get_projects():
 
     projects_list = list(projects_query)
     return flask.jsonify(projects_list)
+
+
+@app.route('/favicon.ico')
+def favicon():
+    return flask.send_from_directory(os.path.join(app.root_path, 'static'),
+                                     'favicon.ico', mimetype='image/vnd.microsoft.icon')
 
 
 @app.route("/")
