@@ -40,12 +40,19 @@ def get_projects():
 
 @app.route("/")
 def index():
-    return flask.render_template("index.html")
+    breadcrumb = (
+        ("/", "Home"),
+    )
+    return flask.render_template("index.html", BREADCRUMB=breadcrumb)
 
 
 @app.route("/projects")
 def projects():
-    return flask.render_template("projects.html")
+    breadcrumb = (
+        ("/", "Home"),
+        ("/projects", "Projects"),
+    )
+    return flask.render_template("projects.html", BREADCRUMB=breadcrumb)
 
 
 @app.route("/project/<int:project_id>")
@@ -66,8 +73,16 @@ def project_page(project_id):
     project_github2 = project["url2"]
     project_livedemo = project["demo"]
 
-    return flask.render_template("project.html", PROJECT_NAME=project_name, PROJECT_MD=project_md,
-                                 PROJECT_GITHUB_URL=project_github, PROJECT_LIVEDEMO=project_livedemo, PROJECT_GITHUB_URL2=project_github2)
+    breadcrumb = (
+        ("/", "Home"),
+        ("/projects", "Projects"),
+        ("/project/<int:project_id>", project_name),
+    )
+
+    return flask.render_template("project.html", BREADCRUMB=breadcrumb, PROJECT_NAME=project_name,
+                                 PROJECT_MD=project_md,
+                                 PROJECT_GITHUB_URL=project_github, PROJECT_LIVEDEMO=project_livedemo,
+                                 PROJECT_GITHUB_URL2=project_github2)
 
 
 if __name__ == "__main__":
