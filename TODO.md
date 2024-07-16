@@ -4,3 +4,4 @@
 - switch to [Flask-PyMongo](https://www.mongodb.com/resources/products/compatibilities/setting-up-flask-with-mongodb)
 - add dropdown icon to projects in the projects tab
 - switch to [Gunicorn](https://flask.palletsprojects.com/en/3.0.x/deploying/gunicorn/)
+- [ASGI](https://flask.palletsprojects.com/en/2.3.x/deploying/asgi/)
