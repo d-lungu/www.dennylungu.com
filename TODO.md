@@ -6,3 +6,4 @@
 - [ASGI](https://flask.palletsprojects.com/en/2.3.x/deploying/asgi/) ?
 - add an option to get the page README from Github instead of MongoDb
 - unit tests
+- setup flask envs
