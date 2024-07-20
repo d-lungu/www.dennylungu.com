@@ -4,4 +4,5 @@
 - switch to [Flask-PyMongo](https://www.mongodb.com/resources/products/compatibilities/setting-up-flask-with-mongodb)
 - add dropdown icon to projects in the projects tab
 - [ASGI](https://flask.palletsprojects.com/en/2.3.x/deploying/asgi/) ?
-- add an option to get the page README from Github instead of MongoDb 
+- add an option to get the page README from Github instead of MongoDb
+- unit tests
