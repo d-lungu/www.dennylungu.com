@@ -2,6 +2,8 @@ import os
 import flask
 import pymongo
 import markdown
+import redis
+import flask_caching
 
 app = flask.Flask(__name__)
 
@@ -17,6 +19,16 @@ def get_db():
     return db
 
 
+app.config.from_mapping(
+    {
+        "CACHE_TYPE": "RedisCache",
+        "CACHE_REDIS_HOST": redis.Redis(host="redis", port=6379),
+        "CACHE_DEFAULT_TIMEOUT": 60 * 60 * 24 * 30  # 1 month
+    }
+)
+cache = flask_caching.Cache(app)
+
+
 def get_config():
     config = getattr(flask.g, "_config", None)
 
@@ -29,6 +41,7 @@ def get_config():
 
 
 @app.route("/api/projects", methods=["GET"])
+@cache.cached()
 def get_projects():
     projects_query = get_db().projects.find({"hide": {"$ne": True}}, {"_id": 0})
 
@@ -40,12 +53,14 @@ def get_projects():
 
 
 @app.route('/favicon.ico')
+@cache.cached()
 def favicon():
     return flask.send_from_directory(os.path.join(app.root_path, 'static'),
                                      'favicon.ico', mimetype='image/vnd.microsoft.icon')
 
 
 @app.route("/")
+@cache.cached()
 def index():
     breadcrumb = (
         ("/", "Home"),
@@ -54,6 +69,7 @@ def index():
 
 
 @app.route("/projects")
+@cache.cached()
 def projects():
     breadcrumb = (
         ("/", "Home"),
@@ -63,6 +79,7 @@ def projects():
 
 
 @app.route("/project/<int:project_id>")
+@cache.cached()
 def project_page(project_id):
     project = get_db().projects.find_one(
         {"id": project_id},
@@ -91,7 +108,7 @@ def project_page(project_id):
     return flask.render_template("project.html", BREADCRUMB=breadcrumb, PROJECT_NAME=project_name,
                                  PROJECT_MD=project_md,
                                  PROJECT_GITHUB_URL=project_github, PROJECT_LIVEDEMO=project_livedemo,
-                                 PROJECT_GITHUB_URL2=project_github2, PROJECT_TAGS=project_tags,)
+                                 PROJECT_GITHUB_URL2=project_github2, PROJECT_TAGS=project_tags, )
 
 
 if __name__ == "__main__":
