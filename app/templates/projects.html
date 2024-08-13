@@ -1,17 +1,60 @@
 {% extends "base.html" %}
-{% block title %}Projects{% endblock %} 
+{% block title %}Projects{% endblock %}
 
 {% block content %}
 <h2 class="title is-2">Projects</h2>
 <div id="projects-grid" class="fixed-grid">
-  
+  {% for project in PROJECTS %}
+    <div class="card cell" style="margin: 10px;">
+      <div class="card-content">
+        <div>
+          <div class="tags">
+            {% for tag in project["tags"] %}
+            <span class="tag {{get_tech_color(tag)}}">{{tag}}</span>
+            {% endfor %}
+          </div>
+        </div>
+        <p>{{ project["name"] }}</p>
+        <div class="card-description">{{ project['short_description'] }}</div>
+      </div>
+      <footer class="card-footer">
+        <a class="card-footer-item" href="/project/{{project['id']}}">Open</a>
+      </footer>
+    </div>
+  {% endfor %}
 </div >
 {% endblock %}
 
 {% block scripts %}
-<script
-  async
-  defer
-  src="{{ url_for('static',filename='js/projects.js') }}?v=2"
-></script>
+<script>
+  let hoveredElement = null;
+  document.addEventListener('mousemove', function (event) {
+      hoveredElement = event.target;
+  });
+
+  const $cards = document.querySelectorAll(".card");
+  $cards.forEach($card => $card.addEventListener("click", () => {
+    if (hoveredElement.classList.contains("card-footer-item")) {
+        return; // fix for the card collapsing after pressing a link
+    }
+
+    // if card is not collapsed
+    const $cardDescription = $card.querySelector(".card-description");
+    const $cardFooter = $card.querySelector(".card-footer");
+
+    if ($cardDescription.classList.contains("is-active")) {
+        $cardDescription.classList.toggle("is-active");
+        $cardFooter.classList.toggle("is-active");
+        return;
+    }
+
+    // if card is collapsed, collapse all cards then expand the one that has been clicked
+    document.querySelectorAll(".card-description.is-active, .card-footer.is-active").forEach((e) => {
+        e.classList.toggle("is-active");
+    });
+
+    $cardDescription.classList.toggle("is-active");
+    $cardFooter.classList.toggle("is-active");
+  }));
+</script>
 {% endblock %}
