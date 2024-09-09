@@ -1,8 +1,13 @@
-version: '3'
-
 services:
+  redis:
+    container_name: www-dennylungu-com-redis
+    image: eqalpha/keydb
+    expose:
+      - '6379'
   web:
     container_name: www-dennylungu-com
     build: './app'
     ports:
       - '5000:5000'
+    depends_on:
+      - redis

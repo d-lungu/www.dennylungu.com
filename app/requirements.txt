@@ -4,3 +4,5 @@ markdown
 requests
 python-dotenv
 gunicorn
+Flask-Caching
+redis
