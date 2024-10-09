@@ -21,8 +21,8 @@ def get_db():
 
 app.config.from_mapping(
     {
-        "CACHE_TYPE": "RedisCache",
-        "CACHE_REDIS_HOST": redis.Redis(host="redis", port=6379),
+        "CACHE_TYPE": "FileSystemCache",
+        "CACHE_DIR": "./cache/",
         "CACHE_DEFAULT_TIMEOUT": 60 * 60 * 24 * 30  # 1 month
     }
 )
