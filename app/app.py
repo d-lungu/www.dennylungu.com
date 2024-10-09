@@ -2,7 +2,6 @@ import os
 import flask
 import pymongo
 import markdown
-import redis
 import flask_caching
 
 app = flask.Flask(__name__)
